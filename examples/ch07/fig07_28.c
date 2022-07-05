@@ -3,47 +3,59 @@
 #include <stdio.h>
 
 // prototypes
-void function1(int a);
-void function2(int b);
-void function3(int c);
+double add(double a, double b);
+double subtract(double a, double b);
+double multiply(double a, double b);
+double divide(double a, double b);
 
 int main(void)
 {
    // initialize array of 3 pointers to functions that each take an
    // int argument and return void                              
-   void (*f[3])(int) = {function1, function2, function3};    
+   double (*f[4])(double, double) = {add, subtract, multiply, divide};
 
-   printf("%s", "Enter a number between 0 and 2, 3 to end: ");
-   size_t choice; // variable to hold user's choice
-   scanf("%u", &choice);
+   printf("%s", "Enter 0 to add, 1 to subtract, 2 to multiply, or 3 to divide. (4 to quit)");
+   size_t choice; // variables to hold user's choice
+   double num1 = 0;
+   double num2 = 0;
+   scanf("%llu", &choice);
 
    // process user's choice
    while (choice >= 0 && choice < 3) {
 
+      // Asking user for 2 numbers            
+      puts("Enter first number: ");
+      scanf("%lf", &num1);
+      puts("Enter second number: ");
+      scanf("%lf", &num2);
       // invoke function at location choice in array f and pass
-      // choice as an argument                              
-      (*f[choice])(choice);                                
+      // choice as an argument  
+      double result = (*f[choice])(num1, num2);
+      printf("You chose %llu and the result is: %lf\n", choice, result);
+     
 
-      printf("%s", "Enter a number between 0 and 2, 3 to end: ");
-      scanf("%u", &choice);
+      printf("%s", "Enter 0 to add, 1 to subtract, 2 to multiply, or 3 to divide. (4 to quit)");
+      scanf("%llu", &choice);
    } 
 
    puts("Program execution completed.");
 } 
 
-void function1(int a)
-{
-   printf("You entered %d so function1 was called\n\n", a);
+// Function definitions
+double add(double a, double b) {
+    return a + b;
 }
 
-void function2(int b)
-{
-   printf("You entered %d so function2 was called\n\n", b);
+double subtract(double a, double b) {
+    return a - b;
 }
 
-void function3(int c)
-{
-   printf("You entered %d so function3 was called\n\n", c);  
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b) {
+    return a / b;
 }
 
 
