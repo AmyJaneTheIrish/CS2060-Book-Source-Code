@@ -21,21 +21,20 @@ int main(void)
    scanf("%llu", &choice);
 
    // process user's choice
-   while (choice >= 0 && choice < 3) {
-
-      // Asking user for 2 numbers            
-      puts("Enter first number: ");
-      scanf("%lf", &num1);
-      puts("Enter second number: ");
-      scanf("%lf", &num2);
-      // invoke function at location choice in array f and pass
-      // choice as an argument  
-      double result = (*f[choice])(num1, num2);
-      printf("You chose %llu and the result is: %lf\n", choice, result);
+   while (choice >= 0 && choice < 4) {
+       // Asking user for 2 numbers        
+       printf("%s", "Enter the first number: ");
+       scanf("%lf", &num1);
+       printf("%s", "Enter the second number: ");
+       scanf("%lf", &num2);
+       // invoke function at location choice in array f and pass
+       // choice as an argument  
+       double result = (*f[choice])(num1, num2);
+       printf("You chose %llu and the result is: %lf\n\n", choice, result);
      
 
-      printf("%s", "Enter 0 to add, 1 to subtract, 2 to multiply, or 3 to divide. (4 to quit)");
-      scanf("%llu", &choice);
+       printf("%s", "Enter 0 to add, 1 to subtract, 2 to multiply, or 3 to divide. (4 to quit)");
+       scanf("%llu", &choice);
    } 
 
    puts("Program execution completed.");
